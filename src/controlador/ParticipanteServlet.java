@@ -43,13 +43,11 @@ public class ParticipanteServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		Participante pdao = new Participante();
 		Gson gson = new Gson();
-		JsonElement json = gson.toJsonTree(pdao.lista());
-		resp.setContentType("aplication/json");
-		resp.getWriter().print(json.toString());
-		
-		// TODO Auto-generated method stub
+		ParticipanteDao pdao = new ParticipanteDao();
+		resp.setContentType("application/json");
+		resp.setCharacterEncoding("UTF-8");
+		resp.getWriter().write(gson.toJson(pdao.lista()));
 		
 	}
 

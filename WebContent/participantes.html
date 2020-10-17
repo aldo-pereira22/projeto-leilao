@@ -2,11 +2,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title> LISTA DE PARTICIPANTES </title>
+<title>LISTA DE PARTICIPANTES</title>
 </head>
 <body>
 
-<h1> Lista de leilões </h1>
+	<h1>Lista de leilões</h1>
 	<table>
 		<thead>
 			<tr>
@@ -21,4 +21,18 @@
 	</table>
 
 </body>
+
+<script type="text/javascript">
+	var ajax = new XMLHttpRequest();
+	ajax.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+
+			console.log(ajax.responseText + "Antes")
+			var alunos = JSON.parse(ajax.responseText);
+			console.log(ajax.responseText + "Depois");
+		}
+	};
+	ajax.open("GET", "participante", true);
+	ajax.send();
+</script>
 </html>
