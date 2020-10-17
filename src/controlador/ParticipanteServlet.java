@@ -44,9 +44,8 @@ public class ParticipanteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		Participante pdao = new Participante();
-		
 		Gson gson = new Gson();
-		JsonElement json = gson.toJsonTree(dao.lista());
+		JsonElement json = gson.toJsonTree(pdao.lista());
 		resp.setContentType("aplication/json");
 		resp.getWriter().print(json.toString());
 		
