@@ -12,6 +12,7 @@
 			<tr>
 				<th>NOME</th>
 				<th>CPF</th>
+				<th> DATA NASCIMENTO </th>
 			</tr>
 		</thead>
 
@@ -41,9 +42,10 @@
 
 		var nomeTd = montaTd(participante.nome);
 		var cpfTd = montaTd(participante.cpf);
-
+		var dataNascimentoTd = montaTd(participante.dataNascimento);
 		tr.appendChild(nomeTd);
 		tr.appendChild(cpfTd);
+		tr.appendChild(dataNascimentoTd);
 
 		var tdEditar = montaTdControle(participante, "editar");
 		var tdExcluir = montaTdControle(participante, "excluir");
@@ -66,7 +68,7 @@
 		});
 
 		link.textContent = tipo;
-		link.setAttribute('href', "participante.html?" + params.toString());
+		link.setAttribute('href', "cadastro-participante.html?" + params.toString());
 		link.setAttribute('id', participante.cpf);
 
 		var tdControle = document.createElement("td");
