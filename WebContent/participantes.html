@@ -24,6 +24,8 @@
 </body>
 
 <script type="text/javascript">
+
+/*
 	var tabela = document.querySelector("#tbl-participantes");
 
 	function atualizaTabela(participantes) {
@@ -68,7 +70,7 @@
 		});
 
 		link.textContent = tipo;
-		link.setAttribute('href', "cadastro-participante.html?" + params.toString());
+		link.setAttribute('href', "participantes.html?" + params.toString());
 		link.setAttribute('id', participante.cpf);
 
 		var tdControle = document.createElement("td");
@@ -81,17 +83,107 @@
 		td.textContent = dado;
 		return td;
 	}
+*/
+
+/*
+
 	var ajax = new XMLHttpRequest();
 	ajax.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 
 			var participantes = JSON.parse(ajax.responseText);
 			console.log(participantes)
+			//atualizaTabela(participantes);
+		}
+	};
+	ajax.open("GET", "participante", true);
+	ajax.send();
+*/
+
+var tabela = document.querySelector("#tbl-participantes");
+
+requisicaoAjax();
+function requisicaoAjax() {
+	var ajax = new XMLHttpRequest();
+	ajax.responseType="text";
+	ajax.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var participantes = JSON.parse(ajax.responseText);
 			atualizaTabela(participantes);
 		}
 	};
 	ajax.open("GET", "participante", true);
 	ajax.send();
+}
+
+function atualizaTabela(participantes) {
+	participantes.forEach(function(participante) {
+		adicionaParticipanteNaTabela(participante);
+	});
+}
+
+function adicionaParticipanteNaTabela(participante) {
+	var tr = montaTr(participante);
+	tabela.appendChild(tr);
+}
+
+function montaTr(participante) {
+	var tr = document.createElement("tr");
+
+	var nomeTd = montaTd(participante.nome);
+	var cpfTd = montaTd(participante.cpf);
+	var dataTd = montaTd(participante.dataNascimento);
+
+	tr.appendChild(nomeTd);
+	tr.appendChild(cpfTd);
+	tr.appendChild(dataTd);
 	
+	var tdEditar = montaTdControle(participante, "editar");
+	var tdExcluir = montaTdControle(participante, "excluir");
+	
+	tr.appendChild(tdEditar);
+	tr.appendChild(tdExcluir);
+	
+	tr.setAttribute("id", participante.cpf);
+
+	return tr;
+}
+
+function montaTdControle(participante, tipo){
+	var link = document.createElement("a");
+	
+	const params = new URLSearchParams({
+		cpf : participante.cpf,
+		operacao: tipo
+	});
+	
+	link.textContent = tipo;
+	link.setAttribute('href', "participante?" + params.toString());
+	link.setAttribute('id', participante.cpf);
+	if(tipo == "editar"){
+		link.classList.add("btn-editar");
+	}
+	if(tipo == "excluir"){
+		link.classList.add("btn-excluir");
+	}
+	
+	var tdControle = document.createElement("td");
+	tdControle.appendChild(link);
+	
+	return tdControle;
+}
+
+function montaTd(dado) {
+	var td = document.createElement("td");
+	td.textContent = dado;
+	return td;
+}
+
+
+
 </script>
 </html>
+
+
+
+

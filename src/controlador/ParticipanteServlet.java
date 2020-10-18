@@ -37,7 +37,7 @@ public class ParticipanteServlet extends HttpServlet {
 		
 		pdao.salvaParticipante(p);
 		System.out.println("Cadastrado com sucesso!");
-		resp.sendRedirect("cadastro-leilao.html");
+		resp.sendRedirect("participantes.html");
 	}
 	
 	@Override
@@ -54,15 +54,20 @@ public class ParticipanteServlet extends HttpServlet {
 		}else {
 			String operacao = req.getParameter("operacao");
 			if(operacao != null && operacao.equals("excluir")) {
-				pdao.deleta(new Participante(cpf));
+				
+				Participante p = new Participante();
+				p.setCpf(cpf);
+				pdao.deleta(p);
 				resp.sendRedirect("participantes.html");
 			}else {
 				
-				if(req.getParameter("origem") != null && req.getParameter("origem").equals("cadastr-participante") ) {
+				if(req.getParameter("origem") != null && req.getParameter("origem").equals("cadastro-participante") ) {
 					
 					String jsonParticipante = gson.toJson(pdao.getParticipante(cpf));
 					resp.setContentType("aplication/json");
 					resp.getWriter().print(jsonParticipante.toString());
+				}else {
+					resp.sendRedirect("cadastro-participante.html?cpf="+req.getParameter("cpf"));
 				}
 			}
 		}
