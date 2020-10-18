@@ -15,7 +15,7 @@
 			</tr>
 		</thead>
 
-		<tbody id="tbl-alunos">
+		<tbody id="tbl-participantes">
 
 		</tbody>
 	</table>
@@ -23,16 +23,63 @@
 </body>
 
 <script type="text/javascript">
-	var ajax = new XMLHttpRequest();
-	ajax.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
+	var tabela = document.querySelector("#tbl-participantes");
 
-			console.log(ajax.responseText + "Antes")
-			var alunos = JSON.parse(ajax.responseText);
-			console.log(ajax.responseText + "Depois");
-		}
-	};
-	ajax.open("GET", "participante", true);
-	ajax.send();
+	function atualizaTabela(participantes) {
+		participantes.forEach(function(participante) {
+			adicionaAlunoNaTabela(participante);
+		});
+	}
+	
+	function adicionaAlunoNaTabela(participante) {
+		var tr = montaTr(participante);
+		tabela.appendChild(tr);
+	}
+	
+	function montaTr(participante) {
+		var tr = document.createElement("tr");
+
+		var nomeTd = montaTd(participante.nome);
+		var cpfTd = montaTd(participante.cpf);
+
+		tr.appendChild(nomeTd);
+		tr.appendChild(cpfTd);
+
+		var tdEditar = montaTdControle(participante, "editar");
+		var tdExcluir = montaTdControle(participante, "excluir");
+
+		tr.appendChild(tdEditar);
+		tr.appendChild(tdExcluir);
+		
+		//DUVIDA
+		tr.setAttribute("id", participante.cpf);
+
+		return tr;
+	}
+	
+	function montaTdControle(aluno, tipo) {
+		var link = document.createElement("a");
+
+		const params = new URLSearchParams({
+			cpf : participante.cpf,
+			operacao : tipo
+		});
+
+		link.textContent = tipo;
+		link.setAttribute('href', "participantes?" + params.toString());
+		link.setAttribute('id', participante.cpf);
+
+		var tdControle = document.createElement("td");
+
+		tdControle.appendChild(link);
+		return tdControle;
+	}
+	function montaTd(dado) {
+		var td = document.createElement("td");
+		td.textContent = dado;
+		return td;
+	}
+
+	
 </script>
 </html>

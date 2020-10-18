@@ -11,12 +11,24 @@ import javax.persistence.Id;
 public class Participante {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private String cpf;
 	
 	private String nome;
-	private String cpf;
+	
 	private String dataNascimento;
+	public Participante() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Participante(String cpf, String nome) {
+		super();
+		this.cpf = cpf;
+		this.nome = nome;
+	}
+	
+	public Participante(String cpf) {
+		this.cpf = cpf;
+	}
 	
 	
 	public String getDataNascimento() {

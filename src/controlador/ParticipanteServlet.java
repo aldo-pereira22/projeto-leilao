@@ -42,13 +42,49 @@ public class ParticipanteServlet extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		Gson gson = new Gson();
 		ParticipanteDao pdao = new ParticipanteDao();
-		resp.setContentType("application/json");
-		resp.setCharacterEncoding("UTF-8");
-		resp.getWriter().write(gson.toJson(pdao.lista()));
+		Gson gson = new Gson();
+
+		String cpf = req.getParameter("cpf");
+		if(cpf == null) {
+			resp.setContentType("application/json");
+			resp.setCharacterEncoding("UTF-8");
+			resp.getWriter().write(gson.toJson(pdao.lista()));
+			
+		}else {
+			String operacao = req.getParameter("operacao");
+			if(operacao != null && operacao.equals("excluir")) {
+				pdao.deleta(new Participante(cpf));
+				resp.sendRedirect("participantes.html");
+			}else {
+				
+				if(req.getParameter("origem") != null && req.getParameter("origem").equals("cadastr-participante") ) {
+					
+					String jsonParticipante = gson.toJson(pdao.getParticipante(cpf));
+					resp.setContentType("aplication/json");
+					resp.getWriter().print(jsonParticipante.toString());
+				}
+			}
+		}
+		
 		
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

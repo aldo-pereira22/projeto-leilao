@@ -23,6 +23,15 @@ public class ParticipanteDao {
 		TypedQuery<Participante> qry = em.createQuery("from Participante", Participante.class);
 		return qry.getResultList();
 	}
+
+	public void deleta(Participante participante) {
+		em.getTransaction().begin();
+		participante = em.find(Participante.class, participante.getCpf());
+		em.remove(participante);
+		em.getTransaction().commit();
+	}
+	
+	
 	
 //	public void salvaParticipante(Participante p ) {
 //		em.getTransaction().begin();
@@ -40,8 +49,8 @@ public class ParticipanteDao {
 //		em.close();
 //	}
 //	
-//	public Participante getParticipante(String cpf) {
-//		return em.find(Participante.class, cpf);
-//	}
+	public Participante getParticipante(String cpf) {
+		return em.find(Participante.class, cpf);
+	}
 	
 }
