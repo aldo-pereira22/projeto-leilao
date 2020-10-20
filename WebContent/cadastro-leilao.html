@@ -3,42 +3,125 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<style>
+
+
+body{
+	margin: 0px;
+	padding: 0px;
+}
+.main {
+	padding-left:00px;
+	width: 100%;
+}
+.menu {
+	width: 100%;
+	background-color: #1C1C1C;
+	padding: 20px;
+
+	
+}
+
+
+.menu ul {
+	margin: 0;  
+	list-style: none;
+}
+
+.menu ul li {
+	display: inline;
+	padding: 20px;
+
+	
+}
+
+.menu ul li a {
+	display: inline-block;
+	color: white;
+	text-decoration: none;
+	text-align:center;
+}
+
+.menu ul li:hover {
+	background-color: #87CEEB;
+}
+
+footer {
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+	background-color: #1C1C1C;
+	height: 200px;
+	color: white;
+	text-align: center;
+	margin: 0;
+	padding: 20px
+}
+
+</style>
+
 </head>
 <body>
+
+<div class="main">
+		<nav>
+			<div class="menu">
+				<ul>
+					<li><a href="cadastro-participante.html"> CADASTRO DE PARTICIPANTES </a></li>
+					<li><a href="cadastro-leilao.html"> CADASTRO DE LEILÕES </a></li>
+					<li><a href="participantes.html"> LISTA DE PARTICIPANTES </a></li>
+					<li><a href="leiloes.html"> LISTA DE LEILÕES </a></li>
+				</ul>
+
+			</div>
+		</nav>
+
+
+	<div class="content">
+
+
+		<h1>CADASTRO DE LEILÃO</h1>
 	
-	<h1> CADASTRO DE LEILÃO </h1>
-
-
-	<form action="leilao" id="form" method="post">
-		<p>
-			<label> Desrição: </label> <input type="text" id="input-descricao"
-				name="input-descricao" size="30" />
-		</p>
-		<p>
-			<label> Valor Inicial: </label> <input type="text"
-				id="input-valor-inicial" name="input-valor-inicial" size="30" />
-		</p>
-		<p>
-			<label> Valor Arremate: </label> <input type="text" id="input-valor-arremate"
-				name="valor-arremate" />
-		</p>
-		<p>
-			<label> Situação: </label> <input type="text" id="input-situacao"
-				name="input-situacao" />
-		</p>
-		
-			<input type="checkbox" id="aberto" name="aberto" > <label
-			>Aberto</label>
-			
-			<input type="checkbox" id="aberto" name="fechado"> <label > Fechado </label>
-			
-			
-			<p> 
-				<input type="submit" id="btn-salva"
-					name="btn-salva" value="salvar" />
+	
+		<form action="leilao" id="form" method="post">
+			<p>
+				<label> Desrição: </label> <input type="text" id="input-descricao"
+					name="input-descricao" size="30" />
+			</p>
+			<p>
+				<label> Valor Inicial: </label> <input type="text"
+					id="input-valor-inicial" name="input-valor-inicial" size="30" />
+			</p>
+			<p>
+				<label> Valor Arremate: </label> <input type="text"
+					id="input-valor-arremate" name="valor-arremate" />
+			</p>
+			<p>
+				<label> Situação: </label> <input type="text" id="input-situacao"
+					name="input-situacao" />
+			</p>
+	
+			<input type="checkbox" id="aberto" name="aberto"> <label>Aberto</label>
+	
+			<input type="checkbox" id="aberto" name="fechado"> <label>
+				Fechado </label>
+	
+	
+			<p>
+				<input type="submit" id="btn-salva" name="btn-salva" value="salvar" />
 			</P>
-		</p>
-	</form>
-
+	
+		</form>
+	</div>
+	
+		<footer>
+		
+		Desenvolvido | Aldo Pereira Tecnology Systems <br>
+		www.tecnologysystems.com.br
+		
+	
+	</footer>
+</div>
 </body>
 </html>
