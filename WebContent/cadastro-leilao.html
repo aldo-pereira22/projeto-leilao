@@ -5,42 +5,37 @@
 <title>Insert title here</title>
 
 <style>
-
-
-body{
+body {
 	margin: 0px;
 	padding: 0px;
 }
+
 .main {
-	padding-left:00px;
+	padding-left: 00px;
 	width: 100%;
 }
+
 .menu {
 	width: 100%;
 	background-color: #1C1C1C;
 	padding: 20px;
-
-	
 }
 
-
 .menu ul {
-	margin: 0;  
+	margin: 0;
 	list-style: none;
 }
 
 .menu ul li {
 	display: inline;
 	padding: 20px;
-
-	
 }
 
 .menu ul li a {
 	display: inline-block;
 	color: white;
 	text-decoration: none;
-	text-align:center;
+	text-align: center;
 }
 
 .menu ul li:hover {
@@ -58,17 +53,17 @@ footer {
 	margin: 0;
 	padding: 20px
 }
-
 </style>
 
 </head>
 <body>
 
-<div class="main">
+	<div class="main">
 		<nav>
 			<div class="menu">
 				<ul>
-					<li><a href="cadastro-participante.html"> CADASTRO DE PARTICIPANTES </a></li>
+					<li><a href="cadastro-participante.html"> CADASTRO DE
+							PARTICIPANTES </a></li>
 					<li><a href="cadastro-leilao.html"> CADASTRO DE LEILÕES </a></li>
 					<li><a href="participantes.html"> LISTA DE PARTICIPANTES </a></li>
 					<li><a href="leiloes.html"> LISTA DE LEILÕES </a></li>
@@ -78,50 +73,103 @@ footer {
 		</nav>
 
 
-	<div class="content">
+		<div class="content">
 
 
-		<h1>CADASTRO DE LEILÃO</h1>
-	
-	
-		<form action="leilao" id="form" method="post">
-			<p>
-				<label> Desrição: </label> <input type="text" id="input-descricao"
-					name="input-descricao" size="30" />
-			</p>
-			<p>
-				<label> Valor Inicial: </label> <input type="text"
-					id="input-valor-inicial" name="input-valor-inicial" size="30" />
-			</p>
-			<p>
-				<label> Valor Arremate: </label> <input type="text"
-					id="input-valor-arremate" name="valor-arremate" />
-			</p>
-			<p>
-				<label> Situação: </label> <input type="text" id="input-situacao"
-					name="input-situacao" />
-			</p>
-	
-			<input type="checkbox" id="aberto" name="aberto"> <label>Aberto</label>
-	
-			<input type="checkbox" id="aberto" name="fechado"> <label>
-				Fechado </label>
-	
-	
-			<p>
-				<input type="submit" id="btn-salva" name="btn-salva" value="salvar" />
-			</P>
-	
-		</form>
-	</div>
-	
+			<h1>CADASTRO DE LEILÃO</h1>
+
+
+			<form action="leilao" id="form" method="post">
+				<p>
+					<label> Desrição: </label> <input type="text" id="input-descricao"
+						name="input-descricao" size="30" />
+				</p>
+				<p>
+					<label> Data de criação: </label> <input type="text"
+						id="input-data-criacao" name="input-descricao" size="30" />
+				</p>
+				<p>
+					<label> Valor Inicial: </label> <input type="text"
+						id="input-valor-inicial" name="input-valor-inicial" size="30" />
+				</p>
+				<p>
+					<label> Valor Arremate: </label> <input type="text"
+						id="input-valor-arremate" name="valor-arremate" />
+				</p>
+				<p>
+					<label for="situacao"> Situação: </label> <select name="situacao"
+						id="situacao">
+						<option value="aberto">Aberto</option>
+						<option value="fechado">Fechado</option>
+					</select>
+				<p>
+					<input type="submit" id="btn-salva" name="btn-salva" value="salvar" />
+				</P>
+
+			</form>
+		</div>
+
 		<footer>
-		
-		Desenvolvido | Aldo Pereira Tecnology Systems <br>
-		www.tecnologysystems.com.br
-		
-	
-	</footer>
-</div>
+
+			Desenvolvido | Aldo Pereira Tecnology Systems <br>
+			www.tecnologysystems.com.br
+
+
+		</footer>
+	</div>
 </body>
+
+
+<script>
+	const searchParams = new URLSearchParams(location.search);
+
+	if (searchParams.get('descricao')) {
+
+		var ajax = new XMLHttpRequest();
+		ajax.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				var leilao = JSON.parse(ajax.responseText);
+				carregarParticipanteNosCampos(leilao);
+			}
+		};
+		ajax.open("GET", "leilao?descricao=" + searchParams.get('descricao')
+				+ "&origem=cadastro-leilao", true);
+		ajax.send();
+	}
+	
+	function carregarParticipanteNosCampos(leilao){
+		inputDescricao = document.querySelector('#input-descricao');
+		inputDataCricao = document.querySelector('#input-data-criacao');
+		inputValorInicial = document.querySelector('#input-valor-inicial');
+		inputValorArremate = document.querySelector('#input-valor-arremate"');
+		inputSituacao = document.querySelector('#situacao"');
+
+		inputDescricao.value = leilao.descricao;
+		inputDataCricao.value = leilao.dataCriacao;
+		inputValorInicial.value = leilao.valorInicail;
+		inputValorArremate.value = leilao.valorArrmate;
+		inputSituacao.value = leilao.situacao;	
+		
+	}
+	
+	
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </html>

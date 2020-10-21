@@ -10,7 +10,7 @@ import javax.persistence.ManyToOne;
 public class Leilao {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
 	private String descricao;

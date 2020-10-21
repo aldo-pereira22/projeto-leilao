@@ -27,15 +27,21 @@ public class Teste {
 		Leilao leilao = new Leilao();
 		LeilaoDao leilaoDao = new LeilaoDao();
 		
-		leilao.setDataCriacao("22222");
-		leilao.setDescricao("PlayStation");
-		leilao.setSituacao("Aberto");
-		leilao.setValorArremate(900.00);
-		leilao.setValorInicial(1000.00);
-		leilao.setLance(lance);
-		leilaoDao.salvar(leilao);
+//		leilao.setDataCriacao("22222");
+//		leilao.setDescricao("PlayStation");
+//		leilao.setSituacao("Aberto");
+//		leilao.setValorArremate(900.00);
+//		leilao.setValorInicial(1000.00);
+//		leilao.setLance(lance);
+//		leilaoDao.salvar(leilao);
 			
 		
+		leilao = leilaoDao.getLeilao((long) 6);
+		System.out.println("Descrição:"+ leilao.getDescricao());
+		leilaoDao.deleta(leilao);
+		
+		System.out.println();
+		//leilaoDao.deleta(leilao);
 	}
 
 }
