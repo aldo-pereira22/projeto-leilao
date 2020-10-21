@@ -29,6 +29,7 @@ public class ParticipanteDao {
 		participante = em.find(Participante.class, participante.getCpf());
 		em.remove(participante);
 		em.getTransaction().commit();
+		em.close();
 	}
 	
 	
