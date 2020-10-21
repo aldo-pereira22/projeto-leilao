@@ -6,13 +6,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import entidade.Lance;
-import entidade.Participante;
+
 import jpa.JPAUtil;
 
 public class LanceDao {
 
 	EntityManager em = new JPAUtil().getConecction();
-
+	
 	public List<Lance> lista() {
 		TypedQuery<Lance> qry = em.createNamedQuery("from Lance", Lance.class);
 		return qry.getResultList();

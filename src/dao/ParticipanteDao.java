@@ -12,12 +12,6 @@ public class ParticipanteDao {
 
 	EntityManager em = new JPAUtil().getConecction();
 	
-//	public void salvaParticipante(Participante p ) {
-//		em.getTransaction().begin();
-//		em.persist(p);
-//		em.getTransaction().commit();
-//		em.close();
-//	}
 	
 	public List<Participante>lista() {
 		TypedQuery<Participante> qry = em.createQuery("from Participante", Participante.class);

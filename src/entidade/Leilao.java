@@ -1,18 +1,25 @@
 package entidade;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Leilao {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private long id;
+	
+	private String descricao;
+	private String dataCriacao;
+	private double valorInicial;
+	private double valorArremate;
+	private String situacao;
+	@ManyToOne
+	private Lance lance;
 	public long getId() {
 		return id;
 	}
@@ -25,10 +32,10 @@ public class Leilao {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public Date getDataCriacao() {
+	public String getDataCriacao() {
 		return dataCriacao;
 	}
-	public void setDataCriacao(Date dataCriacao) {
+	public void setDataCriacao(String dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
 	public double getValorInicial() {
@@ -49,10 +56,13 @@ public class Leilao {
 	public void setSituacao(String situacao) {
 		this.situacao = situacao;
 	}
-	private String descricao;
-	private Date dataCriacao;
-	private double valorInicial;
-	private double valorArremate;
-	private String situacao;
+	public Lance getLance() {
+		return lance;
+	}
+	public void setLance(Lance lance) {
+		this.lance = lance;
+	}
+	
+	
 	
 }
