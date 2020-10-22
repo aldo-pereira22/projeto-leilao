@@ -34,7 +34,6 @@ public class LeilaoDao {
 
 			existente.setDataCriacao(leilao.getDataCriacao());
 			existente.setDescricao(leilao.getDescricao());
-			existente.setLance(leilao.getLance());
 			existente.setSituacao(leilao.getSituacao());
 			existente.setValorArremate(leilao.getValorArremate());
 			existente.setValorInicial(leilao.getValorInicial());

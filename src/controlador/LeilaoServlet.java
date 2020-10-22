@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.LeilaoDao;
 import entidade.Leilao;
 
+
 @WebServlet(urlPatterns = "/leilao")
 public class LeilaoServlet extends HttpServlet{
 		
@@ -18,18 +19,32 @@ public class LeilaoServlet extends HttpServlet{
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
+		
+	
 		LeilaoDao ldao = new LeilaoDao();		
-		Leilao leilao = new Leilao();
+		Leilao leilao = new Leilao();	
 		
-		leilao.setDescricao(req.getParameter("input-descricao") );
-		leilao.setValorInicial(Double.parseDouble(req.getParameter("input-valor-inicial")));
-		leilao.setValorArremate(Double.parseDouble(req.getParameter("input-valor-arremate")));
-		leilao.setSituacao(req.getParameter("situacao"));
-		leilao.setDataCriacao(req.getParameter("input-data-criacao"));
+		String descricao = req.getParameter("input-descricao");		
+		String valorInicial = req.getParameter("input-valor-inicial");
+		String valorArremate = req.getParameter("input-valor-arremate");
+		String dataCriacao = req.getParameter("input-data-criacao");
+		String situacao = req.getParameter("situacao");
 		
-		ldao.salvar(leilao);
+		System.out.println("Descrição - "+ descricao);
+		System.out.println("VALOR INICIAL - " + valorInicial );
+		System.out.println("VALOR ARREMATE - "+ valorArremate);
+		System.out.println("DATA CRIACAO - "+ dataCriacao);
+		System.out.println("SITUACAO -  "+ situacao);
 		
+	
 		
+		leilao.setDescricao(descricao);
+		leilao.setDataCriacao(dataCriacao);
+		leilao.setValorArremate(Double.parseDouble(valorArremate));
+		leilao.setValorInicial( Double.parseDouble(valorInicial));
+		leilao.setSituacao(situacao);
+		ldao.salvar(leilao);		
+		resp.sendRedirect("leiloes.html");
 		
 	}
 	

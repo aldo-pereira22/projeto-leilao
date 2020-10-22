@@ -25,8 +25,8 @@ public class ParticipanteServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		ParticipanteDao pdao = new ParticipanteDao();
-		
 		Participante p = new Participante();
+		
 		String nome = req.getParameter("input-nome");
 		String cpf = req.getParameter("input-cpf");
 		String dataNascimento = req.getParameter("input-data-nascimento");
