@@ -63,6 +63,10 @@ public class Leilao {
 		this.lance = lance;
 	}
 	
+	public void adicionarLance(Lance lance) {
+		
+		
+	}
 	
 	
 }

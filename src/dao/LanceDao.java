@@ -47,5 +47,8 @@ public class LanceDao {
 	public Lance getLance(Long id) {
 		return em.find(Lance.class, id);
 	}
-
+	public double menorLance() {
+		
+		return 10.0;
+	}
 }

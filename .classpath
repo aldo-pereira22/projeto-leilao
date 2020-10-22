@@ -71,5 +71,6 @@
 	<classpathentry kind="lib" path="/home/aldo/eclipse-workspace/projeto-leilao/WebContent/WEB-INF/lib/lib-tomcat/tomcat-websocket.jar"/>
 	<classpathentry kind="lib" path="/home/aldo/eclipse-workspace/projeto-leilao/WebContent/WEB-INF/lib/lib-tomcat/websocket-api.jar"/>
 	<classpathentry kind="lib" path="/home/aldo/eclipse-workspace/projeto-leilao/WebContent/WEB-INF/lib/tomcat-websocket.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
