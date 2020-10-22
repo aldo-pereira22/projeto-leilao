@@ -132,9 +132,21 @@ footer {
 
 
 var tabela = document.querySelector("#tbl-leilao");
-	
 
 
+requisicaoAjax();
+function requisicaoAjax() {
+	var ajax = new XMLHttpRequest();
+	ajax.responseType="text";
+	ajax.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var participantes = JSON.parse(ajax.responseText);
+			atualizaTabela(participantes);
+		}
+	};
+	ajax.open("GET", "participante", true);
+	ajax.send();
+}
 
 </script>
 </html>
