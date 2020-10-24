@@ -141,11 +141,11 @@ function requisicaoAjax() {
 	ajax.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			var leiloes = JSON.parse(ajax.responseText);
-			console.log(leiloes);
-			//atualizaTabela(leiloes);
+			console.log("Lista de leilões",leiloes);
+			atualizaTabela(leiloes);
 		}
 	};
-	ajax.open("GET", "participante", true);
+	ajax.open("GET", "leilao", true);
 	ajax.send();
 }
 
@@ -175,8 +175,8 @@ function montaTr(leilao){
 	tr.appendChild(valorArremateTd);
 	tr.appendChild(situacaoTd);
 	
-	var tdEditar = montaTdControle(leilao, "Editar");
-	var tdExcluir = montaTdControle(leilao,"Excluir");
+	var tdEditar = montaTdControle(leilao, "editar");
+	var tdExcluir = montaTdControle(leilao,"excluir");
 	
 	tr.appendChild(tdEditar);
 	tr.appendChild(tdExcluir);
@@ -191,7 +191,7 @@ function montaTdControle(leilao, tipo){
 	
 	var link = document.createElement("a");
 	const params = new URLSearchParams({
-		descricao: tipo,
+		descricao: leilao.descricao,
 		operacao: tipo
 	});
 	

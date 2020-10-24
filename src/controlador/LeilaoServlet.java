@@ -54,6 +54,7 @@ public class LeilaoServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		System.out.println(req.getParameterNames().toString());
 		LeilaoDao ldao = new LeilaoDao();
 		Gson gson = new Gson();
 		
@@ -72,11 +73,14 @@ public class LeilaoServlet extends HttpServlet{
 				
 				for(Leilao l : listaLeilao) {
 					if(l.getDescricao().equals(descricao)) {
+						System.out.println("DESCRICÂO: -------"+l.getDescricao());
 						leilao = l;
 						return;
 					}
 				}
-				
+				System.out.println("Leilão Descricção:"+ leilao.getDescricao());
+				System.out.println("Leilão Valor Arremate:"+ leilao.getValorArremate());
+				System.out.println("Leilão Descricção:"+ leilao.getDescricao());
 				ldao.deleta(leilao);
 				resp.sendRedirect("leiloes.html");
 			}else {
@@ -103,7 +107,6 @@ public class LeilaoServlet extends HttpServlet{
 		}
 
 		
-		super.doGet(req, resp);
 	}
 	
 }
