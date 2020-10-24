@@ -46,6 +46,7 @@ public class LeilaoDao {
 	public Leilao getLeilao(Long id) {
 		return em.find(Leilao.class, id);
 	}
+
 }
 
 

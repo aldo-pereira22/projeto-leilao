@@ -140,16 +140,87 @@ function requisicaoAjax() {
 	ajax.responseType="text";
 	ajax.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			var participantes = JSON.parse(ajax.responseText);
-			atualizaTabela(participantes);
+			var leiloes = JSON.parse(ajax.responseText);
+			console.log(leiloes);
+			//atualizaTabela(leiloes);
 		}
 	};
 	ajax.open("GET", "participante", true);
 	ajax.send();
 }
 
+function atualizaTabela(leiloes){
+	leiloes.forEach(function (leilao){
+		adicionaLeilaoNaTabela(leilao);
+	});
+}
+
+function adicionaLeilaoNaTabela(leilao){
+	var tr = montaTr(leilao);
+	tabela.appendChild(tr);
+}
+
+function montaTr(leilao){
+	var tr = document.createElement("tr");
+	
+	var descricaoTd = montaTd(leilao.descricao);
+	var dataCriacaoTd = montaTd(leilao.dataCriacao);
+	var valorInicialTd = montaTd(leilao.valorInicial);
+	var valorArremateTd = montaTd(leilao.valorArremate);
+	var situacaoTd = montaTd(leilao.situacao);
+	
+	tr.appendChild(descricaoTd);
+	tr.appendChild(dataCriacaoTd);
+	tr.appendChild(valorInicialTd);
+	tr.appendChild(valorArremateTd);
+	tr.appendChild(situacaoTd);
+	
+	var tdEditar = montaTdControle(leilao, "Editar");
+	var tdExcluir = montaTdControle(leilao,"Excluir");
+	
+	tr.appendChild(tdEditar);
+	tr.appendChild(tdExcluir);
+
+	
+	tr.setAttribute("id", leilao.id);
+	return tr;
+}
+
+
+function montaTdControle(leilao, tipo){
+	
+	var link = document.createElement("a");
+	const params = new URLSearchParams({
+		descricao: tipo,
+		operacao: tipo
+	});
+	
+	link.textContent = tipo;
+	link.setAttribute('href', "leilao?"+params.toString());
+	link.setAttribute('id', leilao.id);
+	if(tipo == "editar"){
+		link.classList.add("btn-editar");
+	}
+	
+	if(tipo == "excluir"){
+		link.classList.add("btn-excluir");
+	}
+	
+	var tdControle =  document.createElement("td");
+	tdControle.appendChild(link);
+	return tdControle;
+	
+}
+
+function montaTd(dado){
+	var td = document.createElement("td");
+	td.textContent = dado;
+	return td;
+}
 </script>
 </html>
+
+
 
 
 
