@@ -196,7 +196,7 @@ function montaTdControle(leilao, tipo){
 	});
 	
 	link.textContent = tipo;
-	link.setAttribute('href', "leilao?"+params.toString());
+	link.setAttribute('href', "leilao?" + params.toString());
 	link.setAttribute('id', leilao.id);
 	if(tipo == "editar"){
 		link.classList.add("btn-editar");
