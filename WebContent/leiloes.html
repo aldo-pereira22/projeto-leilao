@@ -101,14 +101,16 @@ footer {
 
 <h1> Lista de leilões </h1>
 	<table>
-		<thead>
+		<thead>	
 			<tr>
+				<th> ID </th>
 				<th>DESCRIÇÃO</th>
 				<th>VALOR INICIAL</th>
-				<th> DATA DA CRIAÇÃO </th>
-				<th> VALOR INICIAL </th>
 				<th> VALOR DO ARREMATE </th>
-				<th> SITUAÇÃO</th>
+				<th> DATA DA CRIAÇÃO </th>
+				<th> SITUAÇÃO	</th>
+				<th> EDITAR 	</th>
+				<th> EXCLUIR 	</th>
 			</tr>
 		</thead>
 
@@ -163,16 +165,18 @@ function adicionaLeilaoNaTabela(leilao){
 function montaTr(leilao){
 	var tr = document.createElement("tr");
 	
+	var idTd = montaTd(leilao.id);
 	var descricaoTd = montaTd(leilao.descricao);
 	var dataCriacaoTd = montaTd(leilao.dataCriacao);
 	var valorInicialTd = montaTd(leilao.valorInicial);
 	var valorArremateTd = montaTd(leilao.valorArremate);
 	var situacaoTd = montaTd(leilao.situacao);
 	
+	tr.appendChild(idTd);
 	tr.appendChild(descricaoTd);
-	tr.appendChild(dataCriacaoTd);
 	tr.appendChild(valorInicialTd);
 	tr.appendChild(valorArremateTd);
+	tr.appendChild(dataCriacaoTd);
 	tr.appendChild(situacaoTd);
 	
 	var tdEditar = montaTdControle(leilao, "editar");
@@ -192,6 +196,7 @@ function montaTdControle(leilao, tipo){
 	var link = document.createElement("a");
 	const params = new URLSearchParams({
 		descricao: leilao.descricao,
+		//id : leilao.id,
 		operacao: tipo
 	});
 	

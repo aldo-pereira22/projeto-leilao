@@ -1,6 +1,7 @@
 package controlador;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -21,24 +22,28 @@ public class LeilaoServlet extends HttpServlet {
 
 		LeilaoDao ldao = new LeilaoDao();
 		Leilao leilao = new Leilao();
-
+		
+		
 		String descricao = req.getParameter("input-descricao");
 		String valorInicial = req.getParameter("input-valor-inicial");
 		String valorArremate = req.getParameter("input-valor-arremate");
 		String dataCriacao = req.getParameter("input-data-criacao");
 		String situacao = req.getParameter("situacao");
 
-		System.out.println("Descrição - " + descricao);
-		System.out.println("VALOR INICIAL - " + valorInicial);
-		System.out.println("VALOR ARREMATE - " + valorArremate);
-		System.out.println("DATA CRIACAO - " + dataCriacao);
-		System.out.println("SITUACAO -  " + situacao);
-
+		List<Leilao>lista = new ArrayList<Leilao>();
+		lista = ldao.lista();
+		
+		for( Leilao l : lista) {
+			if(l.getDescricao().equals(descricao));
+			leilao = l;
+		}
 		leilao.setDescricao(descricao);
 		leilao.setDataCriacao(dataCriacao);
 		leilao.setValorArremate(Double.parseDouble(valorArremate));
 		leilao.setValorInicial(Double.parseDouble(valorInicial));
 		leilao.setSituacao(situacao);
+		
+
 		ldao.salvar(leilao);
 		resp.sendRedirect("leiloes.html");
 
@@ -59,7 +64,6 @@ public class LeilaoServlet extends HttpServlet {
 
 			String operacao = req.getParameter("operacao");
 			if (operacao != null && operacao.equals("excluir")) {
-				System.out.println("LINHA 73");
 				Leilao leilao = new Leilao();
 				List<Leilao> listaLeilao = ldao.lista();
 
