@@ -70,8 +70,7 @@ public class ParticipanteServlet extends HttpServlet {
 					resp.sendRedirect("cadastro-participante.html?cpf="+req.getParameter("cpf"));
 				}
 			}
-		}
-		
+		}		
 		
 	}
 

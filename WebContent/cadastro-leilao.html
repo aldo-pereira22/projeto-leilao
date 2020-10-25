@@ -79,21 +79,26 @@ footer {
 
 
 			<form action="leilao" id="form" method="post">
+
+			<input type="hidden" name="id" id="id" />
+			
+			<!--  style="display:none;"  -->
+
+				<p>
 					<label> Desrição: </label> <input type="text" id="input-descricao"
 						name="input-descricao" size="30" />
 				</p>
+				
 				<p>
 					<label> Data de criação: </label> <input type="text"
 						id="input-data-criacao" name="input-data-criacao" size="30" />
 				</p>
+				
 				<p>
 					<label> Valor Inicial: </label> <input type="text"
 						id="input-valor-inicial" name="input-valor-inicial" size="30" />
 				</p>
-				<p>
-					<label> Valor Arremate: </label> <input type="text"
-						id="input-valor-arremate" name="input-valor-arremate" />
-				</p>
+			
 				<p>
 					<label for="situacao"> Situação: </label> <select name="situacao"
 						id="situacao">
@@ -138,14 +143,15 @@ footer {
 		inputDescricao = document.querySelector('#input-descricao');
 		inputDataCricao = document.querySelector('#input-data-criacao');
 		inputValorInicial = document.querySelector('#input-valor-inicial');
-		inputValorArremate = document.querySelector('#input-valor-arremate');
 		inputSituacao = document.querySelector('#situacao');
+		inputId = document.querySelector('#id');
 
-
+			
+		inputId.value = leilao.id;
+		console.log(inputId.value);
 		inputDescricao.value = leilao.descricao;
 		inputDataCricao.value = leilao.dataCriacao;
 		inputValorInicial.value = leilao.valorInicial;
-		inputValorArremate.value = leilao.valorArremate;
 		inputSituacao.value = leilao.situacao;	
 		
 	}

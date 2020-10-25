@@ -106,7 +106,6 @@ footer {
 				<th> ID </th>
 				<th>DESCRIÇÃO</th>
 				<th>VALOR INICIAL</th>
-				<th> VALOR DO ARREMATE </th>
 				<th> DATA DA CRIAÇÃO </th>
 				<th> SITUAÇÃO	</th>
 				<th> EDITAR 	</th>
@@ -169,13 +168,11 @@ function montaTr(leilao){
 	var descricaoTd = montaTd(leilao.descricao);
 	var dataCriacaoTd = montaTd(leilao.dataCriacao);
 	var valorInicialTd = montaTd(leilao.valorInicial);
-	var valorArremateTd = montaTd(leilao.valorArremate);
 	var situacaoTd = montaTd(leilao.situacao);
 	
 	tr.appendChild(idTd);
 	tr.appendChild(descricaoTd);
 	tr.appendChild(valorInicialTd);
-	tr.appendChild(valorArremateTd);
 	tr.appendChild(dataCriacaoTd);
 	tr.appendChild(situacaoTd);
 	

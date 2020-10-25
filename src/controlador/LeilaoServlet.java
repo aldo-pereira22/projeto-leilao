@@ -18,28 +18,33 @@ import entidade.Leilao;
 @WebServlet(urlPatterns = "/leilao")
 public class LeilaoServlet extends HttpServlet {
 
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		LeilaoDao ldao = new LeilaoDao();
 		Leilao leilao = new Leilao();
-		
-		
+
 		String descricao = req.getParameter("input-descricao");
 		String valorInicial = req.getParameter("input-valor-inicial");
-		String valorArremate = req.getParameter("input-valor-arremate");
 		String dataCriacao = req.getParameter("input-data-criacao");
 		String situacao = req.getParameter("situacao");
-
+		Long id = Long.parseLong(req.getParameter("id"));
 		List<Leilao>lista = new ArrayList<Leilao>();
 		lista = ldao.lista();
 		
-		for( Leilao l : lista) {
-			if(l.getDescricao().equals(descricao));
-			leilao = l;
-		}
+//		for( Leilao l : lista) {
+//			if(l.getDescricao().equals(descricao));
+//			leilao = l;
+//		}
+		
+		
+		leilao.setId(id);
+		
 		leilao.setDescricao(descricao);
 		leilao.setDataCriacao(dataCriacao);
-		leilao.setValorArremate(Double.parseDouble(valorArremate));
 		leilao.setValorInicial(Double.parseDouble(valorInicial));
 		leilao.setSituacao(situacao);
 		
