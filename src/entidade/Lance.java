@@ -40,6 +40,12 @@ public class Lance {
 	public void setValor(double valor) {
 		this.valor = valor;
 	}
+	public Leilao getLeilao() {
+		return leilao;
+	}
+	public void setLeilao(Leilao leilao) {
+		this.leilao = leilao;
+	}
 	public Participante getParticipante() {
 		return participante;
 	}
@@ -52,8 +58,40 @@ public class Lance {
 		return 1.0;
 	}
 	
-	
+	boolean lanceMaiorQueValorInicial(Lance lance) {
+		
+		if(lance.getValor() < lance.getLeilao().getValorInicial()) {
+			return false;
+		}
+		
+		return true;
+	}
+	public void adicionarLance(Lance lance) {
+		
+		
+		
+		
+		
+	}
 
 	
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

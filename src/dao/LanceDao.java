@@ -18,8 +18,7 @@ public class LanceDao {
 		return qry.getResultList();
 	}
 	
-	public void deleta(Lance lance) {
-		
+	public void deleta(Lance lance) {		
 		em.getTransaction().begin();
 		lance = em.find(Lance.class, lance.getId());
 		em.remove(lance);
