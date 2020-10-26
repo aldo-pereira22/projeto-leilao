@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 
 import dao.LeilaoDao;
 import entidade.Leilao;
+import util.Utilitarios;
 
 @WebServlet(urlPatterns = "/leilao")
 public class LeilaoServlet extends HttpServlet {
@@ -26,47 +27,27 @@ public class LeilaoServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		LeilaoDao ldao = new LeilaoDao();
 		Leilao leilao = new Leilao();
-		
+		Utilitarios util = new Utilitarios();
+
 		String id = null;
 		id = req.getParameter("id");
-		
+
+		if (util.isNumeric(id)) {
+			leilao.setId(Long.parseLong(id));
+		}
+
 		String valorInicial = req.getParameter("input-valor-inicial");
 		String dataCriacao = req.getParameter("input-data-criacao");
 		String descricao = req.getParameter("input-descricao");
 		String situacao = req.getParameter("situacao");
 
+		leilao.setDescricao(descricao);
+		leilao.setDataCriacao(dataCriacao);
+		leilao.setValorInicial(Double.parseDouble(valorInicial));
+		leilao.setSituacao(situacao);
 
-		
-		System.out.println("IDDDDDDDDDDDDDDDDD --- "+id);
-		if( !(id != null )) {
-			leilao.setId(Long.parseLong(id));						
-			leilao.setDescricao(descricao);
-			leilao.setDataCriacao(dataCriacao);
-			leilao.setValorInicial(Double.parseDouble(valorInicial));
-			leilao.setSituacao(situacao);
-			ldao.salvar(leilao);
-		}else {
-			leilao.setDescricao(descricao);
-			leilao.setDataCriacao(dataCriacao);
-			leilao.setValorInicial(Double.parseDouble(valorInicial));
-			leilao.setSituacao(situacao);
-			ldao.salvar(leilao);
-			
-		}
-		
+		ldao.salvar(leilao);
 
-		
-		List<Leilao>lista = new ArrayList<Leilao>();
-		lista = ldao.lista();
-		
-//		for( Leilao l : lista) {
-//			if(l.getDescricao().equals(descricao));
-//			leilao = l;
-//		}
-		
-		
-		
-		
 		resp.sendRedirect("leiloes.html");
 
 	}
