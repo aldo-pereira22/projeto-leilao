@@ -26,12 +26,36 @@ public class LeilaoServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		LeilaoDao ldao = new LeilaoDao();
 		Leilao leilao = new Leilao();
-
-		String descricao = req.getParameter("input-descricao");
+		
+		String id = null;
+		id = req.getParameter("id");
+		
 		String valorInicial = req.getParameter("input-valor-inicial");
 		String dataCriacao = req.getParameter("input-data-criacao");
+		String descricao = req.getParameter("input-descricao");
 		String situacao = req.getParameter("situacao");
-		Long id = Long.parseLong(req.getParameter("id"));
+
+
+		
+		System.out.println("IDDDDDDDDDDDDDDDDD --- "+id);
+		if( !(id != null )) {
+			leilao.setId(Long.parseLong(id));						
+			leilao.setDescricao(descricao);
+			leilao.setDataCriacao(dataCriacao);
+			leilao.setValorInicial(Double.parseDouble(valorInicial));
+			leilao.setSituacao(situacao);
+			ldao.salvar(leilao);
+		}else {
+			leilao.setDescricao(descricao);
+			leilao.setDataCriacao(dataCriacao);
+			leilao.setValorInicial(Double.parseDouble(valorInicial));
+			leilao.setSituacao(situacao);
+			ldao.salvar(leilao);
+			
+		}
+		
+
+		
 		List<Leilao>lista = new ArrayList<Leilao>();
 		lista = ldao.lista();
 		
@@ -41,15 +65,8 @@ public class LeilaoServlet extends HttpServlet {
 //		}
 		
 		
-		leilao.setId(id);
 		
-		leilao.setDescricao(descricao);
-		leilao.setDataCriacao(dataCriacao);
-		leilao.setValorInicial(Double.parseDouble(valorInicial));
-		leilao.setSituacao(situacao);
 		
-
-		ldao.salvar(leilao);
 		resp.sendRedirect("leiloes.html");
 
 	}
