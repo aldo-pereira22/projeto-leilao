@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>LANCES</title>
+<link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+
+<div id="main">
+		<nav>
+			<div class="menu">
+				<ul>
+					<li><a href="cadastro-participante.html">	CADASTRO DE	PARTICIPANTES 	</a></li>
+					<li><a href="cadastro-leilao.html">			CADASTRO DE LEILÕES 		</a></li>
+					<li><a href="participantes.html">			LISTA DE PARTICIPANTES 		</a></li>
+					<li><a href="leiloes.html">					LISTA DE LEILÕES			</a></li>
+					<li><a href="lance.html">					FAZER LANCE					</a></li>
+				</ul>
+
+			</div>
+		</nav>
+
+
+<div class="content">
+
+
+			<h1> LANCES </h1>
+			
+	<form>
+					<label for="participante"> Selecione o participante </label>
+					<select style="width: 300px;"  name="participante"
+
+						id="participante">
+						<option value="aberto">		Aldo				</option>
+						<option value="fechado">	Joao				</option>
+						<option value="fechado">	Gabriel Bessa		</option>						
+					</select>
+			<p>
+					<label for="situacao"> ITENS </label>
+					<select style="width: 300px;"  name="situacao"
+						id="situacao">
+						<option value="aberto">		Bicicleta Velha		</option>
+						<option value="fechado">	Televisão Usada		</option>
+					</select>
+					
+					<button type="button"> Ver Informações </button>
+					
+				<br><br>
+				<label> Fazer lance </label> <input type="text" id="input-nome"
+					name="input-nome" size="30" />
+				
+				<input type="submit" id="btn-salva" name="btn-salva" value="salvar Lance" />
+			
+			</p>
+
+	</form>		
+
+</div>
+
+<footer>
+
+			Desenvolvido | Aldo Pereira Tecnology Systems <br>
+			www.tecnologysystems.com.br
+
+</footer>
+</div>
+	
+
+</body>
+</html>

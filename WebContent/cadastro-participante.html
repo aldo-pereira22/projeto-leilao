@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Cadastro de participante</title>
+<title> CADASTRO DE PARTICIPANTES </title>
 
 <style>
 body {
@@ -68,11 +68,11 @@ footer {
 		<nav>
 			<div class="menu">
 				<ul>
-					<li><a href="cadastro-participante.html"> CADASTRO DE
-							PARTICIPANTES </a></li>
-					<li><a href="cadastro-leilao.html"> CADASTRO DE LEILÕES </a></li>
-					<li><a href="participantes.html"> LISTA DE PARTICIPANTES </a></li>
-					<li><a href="leiloes.html"> LISTA DE LEILÕES </a></li>
+					<li><a href="cadastro-participante.html"> 	CADASTRO DE PARTICIPANTES	 </a></li>
+					<li><a href="cadastro-leilao.html"> 		CADASTRO DE LEILÕES		 	</a></li>
+					<li><a href="participantes.html"> 			LISTA DE PARTICIPANTES	 	</a></li>
+					<li><a href="leiloes.html"> 				LISTA DE LEILÕES		 	</a></li>
+					<li><a href="lance.html">					FAZER LANCE					</a></li>
 				</ul>
 
 			</div>
@@ -113,6 +113,14 @@ footer {
 <script type="text/javascript">
 	const searchParams = new URLSearchParams(location.search);
 
+	var dataNascimento = document.querySelector("#input-data-nascimento");
+	
+	if(dataNascimento){
+		
+		
+	}
+	
+	
 	if (searchParams.get('cpf')) {
 
 		var ajax = new XMLHttpRequest();
