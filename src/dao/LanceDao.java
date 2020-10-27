@@ -29,9 +29,7 @@ public class LanceDao {
 	}
 
 	public void salvar(Lance lance) {
-		
 
-		
 		em.getTransaction().begin();
 		Lance existente = getLance(lance.getId());
 

@@ -88,17 +88,24 @@ footer {
 			<!--  style="display:none;"  -->
 
 				<p>
-					<label> Desrição: </label> <input type="text" id="input-descricao"
+					<label> Desrição: </label> <input  required type="text" id="input-descricao"
 						name="input-descricao" size="30" />
 				</p>
 				
 				<p>
-					<label> Data de criação: </label> <input type="text"
+					<label> Data de criação: </label>
+					
+						<input required type="text" id="input-data-criacao" name="input-data-criacao"
+						placeholder="Ex.: dd/mm/aaaa" data-mask="00/00/0000" maxlength="10" autocomplete="off">
+					
+					<!--  <input type="text" required
 						id="input-data-criacao" name="input-data-criacao" size="30" />
+						 -->
+						
 				</p>
 				
 				<p>
-					<label> Valor Inicial: </label> <input type="text"
+					<label> Valor Inicial: </label> <input type="text" required 
 						id="input-valor-inicial" name="input-valor-inicial" size="30" />
 				</p>
 			
