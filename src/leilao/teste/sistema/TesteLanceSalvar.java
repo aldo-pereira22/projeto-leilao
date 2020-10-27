@@ -9,14 +9,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class TesteLanceSalvar {
-	private WebDriver browser;
+private WebDriver browser;
 	
 	@Before
 	public void setup() {
-		
 		System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
 		browser = new ChromeDriver();
-		
 	}
 	
 	@After
@@ -25,29 +23,25 @@ public class TesteLanceSalvar {
 	}
 	
 	@Test
-	public void salvarLance() {
-		browser.get("http://localhost:8080/projeto-leilao/cadastro-leilao.html");
+	public void deveSalvarLance() {
+		browser.get("http://localhost:8080/projeto-leilao/lance.html");
 		
-		WebElement descricao = browser.findElement(By.name("input-descricao"));
-		WebElement dataCriacao = browser.findElement(By.name("input-data-criacao"));
-		WebElement valorInicial = browser.findElement(By.name("input-valor-inicial"));
-		WebElement situacao = browser.findElement(By.name("situacao"));
-		WebElement btnSalvar = browser.findElement(By.name("btn-salva"));
+		WebElement comboBoxLeilao = browser.findElement(By.name("participante"));
+		WebElement comboBoxParticipante = browser.findElement(By.name("leilao"));
+		WebElement campoValor = browser.findElement(By.name("lance"));
 		
-		descricao.sendKeys("Teste Descricao");
-		dataCriacao.sendKeys("Teste DataCriacao");
-		valorInicial.sendKeys("300");
-		situacao = browser.findElement(By.name("situacao"));
-			
+		WebElement botaoSalvar = browser.findElement(By.name("btn-salva"));
+		
+		comboBoxLeilao.sendKeys("Nintendo");
+		comboBoxParticipante.sendKeys("Meu nome");
+		campoValor.sendKeys("55");
 		try {
-			
-			Thread.sleep(5000);
-			
+			Thread.sleep(3000);
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 		}
-		
-		btnSalvar.click();
+		botaoSalvar.click();
 	}
 	
 }
