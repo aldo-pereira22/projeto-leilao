@@ -6,7 +6,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import entidade.Lance;
-
+import entidade.Leilao;
+import entidade.Participante;
 import jpa.JPAUtil;
 
 public class LanceDao {
@@ -28,6 +29,9 @@ public class LanceDao {
 	}
 
 	public void salvar(Lance lance) {
+		
+
+		
 		em.getTransaction().begin();
 		Lance existente = getLance(lance.getId());
 

@@ -1,10 +1,15 @@
 package entidade;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+
+import dao.LanceDao;
 
 @Entity
 public class Leilao {
@@ -68,8 +73,23 @@ public class Leilao {
 
 	}
 
-	public void adicionarLance(Lance lance) {
-
+	double retornaMaiorLance(Leilao leilao) {
+		LanceDao lanceDao = new LanceDao();
+		List<Lance>listaLance = new ArrayList<Lance>();
+		
+		listaLance = lanceDao.lista();
+		double maiorLance = -99;
+		
+		for(Lance lance : listaLance ) {
+			
+			if( leilao.getId() == lance.getLeilao().getId() ) {
+				if(lance.getValor() > maiorLance) {
+					maiorLance = lance.getValor();
+				}
+			}
+		}
+		
+		return maiorLance;
 	}
 
 }

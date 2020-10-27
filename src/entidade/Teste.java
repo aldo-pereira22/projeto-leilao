@@ -29,28 +29,30 @@ public class Teste {
 		Lance lance = new Lance();
 		LanceDao lanceDao = new LanceDao();
 		
-		Participante participante = new Participante();
-		ParticipanteDao pdao = new ParticipanteDao();
-		
+//		Participante participante = new Participante();
+//		ParticipanteDao pdao = new ParticipanteDao();
+//		
 		Leilao leilao = new Leilao();
-		LeilaoDao leilaoDao = new LeilaoDao();
+//		LeilaoDao leilaoDao = new LeilaoDao();
+//		
+//		leilao = leilaoDao.getLeilao((long) 73);
+//		
+//		participante = pdao.getParticipante("111112");
 		
-		leilao = leilaoDao.getLeilao((long) 72);
+//		lance.setParticipante(participante);
+//		lance.setLeilao(leilao);
+//		lance.setValor(350.00);
+//		lanceDao.salvar(lance);
+//		System.out.println("Nome PARTICIPANTE- "+ participante.getNome());
+//		System.out.println("Data de Nascimento PARTICIPANTE- "+participante.getDataNascimento());
+//		System.out.println("CPF PARTIIPANTE- "+ participante.getCpf());
 		
-		participante = pdao.getParticipante("111112");
-		
-		lance.setParticipante(participante);
-		lance.setLeilao(leilao);
-		lance.setValor(300.00);
-		lanceDao.salvar(lance);
-		
-		System.out.println("Nome PARTICIPANTE- "+ participante.getNome());
-		System.out.println("CPF PARTIIPANTE- "+ participante.getCpf());
-		System.out.println("Data de Nascimento PARTICIPANTE- "+participante.getDataNascimento());
 		System.out.println("-----------------------------------------------------------------------------------");
 		System.out.println("Descrição do LEILAO- "+ leilao.getDescricao());
 		System.out.println("VALOR INICIAL LEILAO- "+leilao.getValorInicial());
 		System.out.println("SITUAÇÃO LEILAO- "+leilao.getSituacao());
+		System.out.println("-----------------------------------------------------------------------------------");
+		double maiorLance = leilao.retornaMaiorLance(leilao);
 		System.out.println();
 		System.out.println();
 		System.out.println();
@@ -58,7 +60,7 @@ public class Teste {
 		System.out.println();
 		System.out.println();
 		System.out.println();
-		System.out.println();
+		System.out.println("O maior lance é: "+maiorLance);
 		
 		
 	}

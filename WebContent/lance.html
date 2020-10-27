@@ -15,7 +15,7 @@
 					<li><a href="cadastro-leilao.html">			CADASTRO DE LEILÕES 		</a></li>
 					<li><a href="participantes.html">			LISTA DE PARTICIPANTES 		</a></li>
 					<li><a href="leiloes.html">					LISTA DE LEILÕES			</a></li>
-					<li><a href="lance.html">					FAZER LANCE					</a></li>
+					<li><a href="lance.html">					DAR LANCE					</a></li>
 				</ul>
 
 			</div>
@@ -27,30 +27,22 @@
 
 			<h1> LANCES </h1>
 			
-	<form>
+	<form action="lance" id="form" method="post">
 					<label for="participante"> Selecione o participante </label>
-					<select style="width: 300px;"  name="participante"
-
-						id="participante">
-						<option value="aberto">		Aldo				</option>
-						<option value="fechado">	Joao				</option>
-						<option value="fechado">	Gabriel Bessa		</option>						
+							<select style="width: 300px;"  name="participante" id="participante">					
 					</select>
 			<p>
-					<label for="situacao"> ITENS </label>
-					<select style="width: 300px;"  name="situacao"
-						id="situacao">
-						<option value="aberto">		Bicicleta Velha		</option>
-						<option value="fechado">	Televisão Usada		</option>
+					<label for="situacao"> Selecione o Item </label>
+					<select style="width: 300px;"  name="leilao"
+						id="leilao">
 					</select>
 					
-					<button type="button"> Ver Informações </button>
 					
 				<br><br>
-				<label> Fazer lance </label> <input type="text" id="input-nome"
-					name="input-nome" size="30" />
+				<label> Fazer lance </label> <input type="text" id="lance"
+					name="lance" size="30" />
 				
-				<input type="submit" id="btn-salva" name="btn-salva" value="salvar Lance" />
+				<input type="submit" id="salva-lance" name="btn-salva" value="Salvar Lance" />
 			
 			</p>
 
@@ -68,4 +60,55 @@
 	
 
 </body>
+<script>
+	var cbxNome = document.querySelector("#participante");
+	var cbxLeilao = document.querySelector("#leilao")
+	
+	requisicaoAjax();
+	function requisicaoAjax() {
+		var ajax = new XMLHttpRequest();
+		ajax.responseType="text";
+		ajax.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				var participantes = JSON.parse(ajax.responseText);
+				var nomes = participantes.map(n => n.nome);
+				var cpfs = participantes.map(c => c.cpf);
+				
+				console.log(nomes);
+				for(i=0; i<nomes.length; i++){
+					console.log("ok");
+					var opt = document.createElement("option");
+					opt.value = cpfs[i];
+					opt.text = nomes[i];
+					cbxNome.add(opt, cbxNome.options[i]);
+				}
+			}
+		};
+		ajax.open("GET", "participante", true);
+		ajax.send();
+	}
+	
+	preencheCbxLeilao();
+	function preencheCbxLeilao(){
+		var ajax = new XMLHttpRequest();
+		ajax.responseType="text";
+		ajax.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				var leiloes = JSON.parse(ajax.responseText);
+				var descricao = leiloes.map(l => l.descricao);
+				var id = leiloes.map(lId => lId.id);
+				console.log("ok");
+				for(i=0; i<descricao.length; i++){
+					console.log("tá dentro do for");
+					var opt = document.createElement("option");
+					opt.value = id[i];
+					opt.text = descricao[i];
+					cbxLeilao.add(opt, cbxLeilao.options[i]);
+				}
+			}
+		};
+		ajax.open("GET", "leilao", true);
+		ajax.send();
+	}
+</script>
 </html>

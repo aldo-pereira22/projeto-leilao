@@ -3,12 +3,16 @@ package entidade;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import dao.LanceDao;
+import dao.LeilaoDao;
 
 
 
@@ -68,11 +72,13 @@ public class Lance {
 	}
 	public void adicionarLance(Lance lance) {
 		
+		if(lanceMaiorQueValorInicial(lance)) {
+			LanceDao lanceDao = new LanceDao();
+			lanceDao.salvar(lance);
+			
+		}
 		
-		
-		
-		
-	}
+}
 
 	
 	
