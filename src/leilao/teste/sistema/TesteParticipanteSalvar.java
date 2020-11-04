@@ -49,9 +49,7 @@ public class TesteParticipanteSalvar {
 		
 		btnSalvar.click();
 	}
-	
-	
-	
+		
 }
 
 
